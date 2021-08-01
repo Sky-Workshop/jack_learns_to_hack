@@ -20,7 +20,6 @@ Jack learns to Hack<br>
 <img id="mouse" src="mouse_right.png"><br>
 <a href="https://www.w3schools.com/">W3Schools 君君学黑客</a>
 <script type="text/javascript">
-	//#day2_step2: function declaration, global variable, function call sequence, TODO
 	var mouse;
 	function init(){
 		mouse = document.getElementById("mouse");
@@ -28,7 +27,14 @@ Jack learns to Hack<br>
 		mouse.style.left = 100;
 	}
 	function move_mouse(){
-		//TODO:
+		//#day2_step3: move_mouse(). get mouse's horizontal position and increase it. console.log output.
+		posLeft = mouse.style.left; //type: string
+		posLeft = posLeft.substring(0, posLeft.lastIndexOf("px")); //type: string
+		posLeft = parseInt(posLeft);	//type: number, possibility of NaN
+		console.log("posLeft (before move) = " + posLeft);
+		posLeft += 10;
+		mouse.style.left = posLeft+"px";
+		console.log("posLeft (after move) = " + posLeft);
 	}
 	//1.initialization
 	init();
