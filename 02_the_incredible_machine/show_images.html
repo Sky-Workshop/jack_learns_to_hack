@@ -17,10 +17,14 @@ Jack learns to Hack<br>
 Jack learns to Hack<br>
 <img src="cat_right.png">
 <img src="cat_right.png" width="117" height="126">
-<img src="mouse_right.png"><br>
+<img id="mouse" src="mouse_right.png"><br>
 <a href="https://www.w3schools.com/">W3Schools 君君学黑客</a>
 <script type="text/javascript">
-	alert("Hello Jack!");
+	//alert("Hello Jack!");
+	//#day2_step1: may turn on browser console (F2) to try mouse.width, .hidden, 
+	mouse = document.getElementById("mouse");
+	mouse.style.position = "relative";
+	mouse.style.left = 100;
 </script>
 </body>
 </html>
