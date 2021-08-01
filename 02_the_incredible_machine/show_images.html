@@ -2,7 +2,7 @@
 <head>
 <title>Jack learns to Hack</title>
 </head>
-<body>
+<body onload="main()">
 <h1>Jack learns to Hack</h1>
 <h2>Jack learns to Hack</h2>
 <h3>Jack learns to Hack</h3>
@@ -22,12 +22,12 @@ Jack learns to Hack<br>
 <script type="text/javascript">
 	var mouse;
 	function init(){
+		alert("Hello Jack!");
 		mouse = document.getElementById("mouse");
 		mouse.style.position = "relative";
 		mouse.style.left = 100;
 	}
 	function move_mouse(){
-		//#day2_step3: move_mouse(). get mouse's horizontal position and increase it. console.log output.
 		posLeft = mouse.style.left; //type: string
 		posLeft = posLeft.substring(0, posLeft.lastIndexOf("px")); //type: string
 		posLeft = parseInt(posLeft);	//type: number, possibility of NaN
@@ -36,10 +36,15 @@ Jack learns to Hack<br>
 		mouse.style.left = posLeft+"px";
 		console.log("posLeft (after move) = " + posLeft);
 	}
-	//1.initialization
-	init();
-	//2.move the mouse from left to right
-	move_mouse();
+	//main entrance
+	function main(){
+		//1.initialization
+		init();
+		//2.move the mouse from left to right
+		move_mouse();
+	}
+	//#day2_step4: difference between using body.onload() event and HTML parsing
+	//main();
 </script>
 </body>
 </html>
