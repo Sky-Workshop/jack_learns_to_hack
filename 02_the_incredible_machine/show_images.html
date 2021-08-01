@@ -15,7 +15,7 @@
 Jack learns to Hack<br>
 Jack learns to Hack<br>
 Jack learns to Hack<br>
-<img src="cat_right.png">
+<img id="cat" src="cat_right.png">
 <img id="big_cat" src="cat_right.png" width="117" height="126">
 <img id="mouse" src="mouse_right.png"><br>
 <a href="https://www.w3schools.com/">W3Schools 君君学黑客</a>
@@ -27,7 +27,7 @@ Jack learns to Hack<br>
 		mouse.style.position = "relative";
 		mouse.style.left = 100;
 		big_cat = document.getElementById("big_cat");
-
+		cat = document.getElementById("cat");
 	}
 	function move_mouse(){
 		posLeft = mouse.style.left; //type: string
@@ -35,6 +35,12 @@ Jack learns to Hack<br>
 		posLeft = parseInt(posLeft);	//type: number, possibility of NaN
 		console.log("posLeft (before move) = " + posLeft);
 		posLeft += 10;
+
+		//#day2_step5.3: BOUNDARY CHECK!
+		posLeftMax = window.innerWidth - cat.offsetLeft - (big_cat.offsetLeft + big_cat.width) - mouse.width
+		if (posLeft > posLeftMax)
+			posLeft = posLeftMax;
+
 		mouse.style.left = posLeft+"px";
 		console.log("posLeft (after move) = " + posLeft);
 	}
@@ -49,8 +55,7 @@ Jack learns to Hack<br>
 		big_cat.onclick = function(){	//anonymous function, assigned to event handler
 			move_mouse();
 		}
-		//#day2_step5.2: use a timer!
-		setInterval(move_mouse, 1000); //params: 1.function to be executed 2.delay between executions, in milliseconds
+		//setInterval(move_mouse, 1000); //params: 1.function to be executed 2.delay between executions, in milliseconds
 	}
 </script>
 </body>
