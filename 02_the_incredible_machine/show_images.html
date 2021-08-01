@@ -46,10 +46,11 @@ Jack learns to Hack<br>
 		//for (var i=0; i<9; i++) {  //recall the loop in Python. Note that "{}" is required in JS
 		//	move_mouse();
 		//}
-		//#day2_step5.1: use mouse click event! Notice the right border.
 		big_cat.onclick = function(){	//anonymous function, assigned to event handler
 			move_mouse();
 		}
+		//#day2_step5.2: use a timer!
+		setInterval(move_mouse, 1000); //params: 1.function to be executed 2.delay between executions, in milliseconds
 	}
 </script>
 </body>
