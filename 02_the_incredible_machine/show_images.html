@@ -36,15 +36,16 @@ Jack learns to Hack<br>
 		mouse.style.left = posLeft+"px";
 		console.log("posLeft (after move) = " + posLeft);
 	}
-	//main entrance
+	//main entrance, called by body.onload()
 	function main(){
 		//1.initialization
 		init();
 		//2.move the mouse from left to right
-		move_mouse();
+		//#day2_step5: use loop to move, but it's refreshed too quick to be seen.
+		for (var i=0; i<9; i++) {  //recall the loop in Python. Note that "{}" is required in JS
+			move_mouse();
+		}
 	}
-	//#day2_step4: difference between using body.onload() event and HTML parsing
-	//main();
 </script>
 </body>
 </html>
