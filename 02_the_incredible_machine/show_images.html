@@ -16,16 +16,18 @@ Jack learns to Hack<br>
 Jack learns to Hack<br>
 Jack learns to Hack<br>
 <img src="cat_right.png">
-<img src="cat_right.png" width="117" height="126">
+<img id="big_cat" src="cat_right.png" width="117" height="126">
 <img id="mouse" src="mouse_right.png"><br>
 <a href="https://www.w3schools.com/">W3Schools 君君学黑客</a>
 <script type="text/javascript">
-	var mouse;
+	var mouse, big_cat;
 	function init(){
 		alert("Hello Jack!");
 		mouse = document.getElementById("mouse");
 		mouse.style.position = "relative";
 		mouse.style.left = 100;
+		big_cat = document.getElementById("big_cat");
+
 	}
 	function move_mouse(){
 		posLeft = mouse.style.left; //type: string
@@ -41,8 +43,11 @@ Jack learns to Hack<br>
 		//1.initialization
 		init();
 		//2.move the mouse from left to right
-		//#day2_step5: use loop to move, but it's refreshed too quick to be seen.
-		for (var i=0; i<9; i++) {  //recall the loop in Python. Note that "{}" is required in JS
+		//for (var i=0; i<9; i++) {  //recall the loop in Python. Note that "{}" is required in JS
+		//	move_mouse();
+		//}
+		//#day2_step5.1: use mouse click event! Notice the right border.
+		big_cat.onclick = function(){	//anonymous function, assigned to event handler
 			move_mouse();
 		}
 	}
