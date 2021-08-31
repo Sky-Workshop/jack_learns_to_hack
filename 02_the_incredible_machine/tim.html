@@ -1,0 +1,19 @@
+<body id='body'>
+	<script type="text/javascript">
+		class Mouse {
+			constructor(height=0, width=0) {
+				//1.create an image, and append it to the 'body'
+				var image = document.createElement('img');
+				image.src = 'mouse_right.png';
+				if (height > 0) {
+					image.height = height;	
+				}
+				if (width > 0) {
+					image.width = width;
+				}
+				document.getElementById('body').appendChild(image);
+			}
+		}
+		var mouse1 = new Mouse(0, 48);
+	</script>
+</body>
