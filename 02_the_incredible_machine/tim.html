@@ -1,19 +1,30 @@
 <body id='body'>
 	<script type="text/javascript">
 		class Mouse {
+			speed = 10
+			left = 0
+			image = null
 			constructor(height=0, width=0) {
 				//1.create an image, and append it to the 'body'
-				var image = document.createElement('img');
-				image.src = 'mouse_right.png';
+				this.image = document.createElement('img');
+				this.image.src = 'mouse_right.png';
 				if (height > 0) {
-					image.height = height;	
+					this.image.height = height;	
 				}
 				if (width > 0) {
-					image.width = width;
+					this.image.width = width;
 				}
-				document.getElementById('body').appendChild(image);
+				this.image.style.position = "relative";
+				document.getElementById('body').appendChild(this.image);
+			}
+			walk(){
+				//1.increase the left position attribute/property of the object, by "speed"
+				this.left += this.speed
+				//2.assign the position to the left attribute of the image
+				this.image.style.left = this.left + 'px'
 			}
 		}
 		var mouse1 = new Mouse(0, 48);
+		mouse1.walk();
 	</script>
 </body>
