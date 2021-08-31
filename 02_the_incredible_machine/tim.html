@@ -1,17 +1,16 @@
 <body id='body'>
 	<script type="text/javascript">
-		class Mouse {
-			speed = 10
-			left = 0
-			image = null
-			//1.define a member variable to change walk mode
-			walkMode = 'auto'   //'manual', 'auto'
-			refresh_rate = 100;  //milliseconds
+		var refresh_rate = 100;  //milliseconds
+		class Animal {
+			speed = 0;
+			left = 0;
+			image = null;
+			walkMode = 'auto';   //'manual', 'auto'
 			keyTimer = 0;
-			constructor(height=0, width=0, speed=0) {
+			constructor(imgSrc='', height=0, width=0, speed=0) {
 				//1.create an image, and append it to the 'body'
 				this.image = document.createElement('img');
-				this.image.src = 'mouse_right.png';
+				this.image.src = imgSrc;
 				if (height > 0) {
 					this.image.height = height;	
 				}
@@ -52,8 +51,8 @@
 					//2.1.if 'auto' mode, initialize a timer to call walkOneStep()
 					var that = this;
 					if (this.keyTimer === 0) {
-						this.keyTimer = setInterval(function() {that.walkOneStep(that.speed * that.refresh_rate / 1000)}, 
-							this.refresh_rate);
+						this.keyTimer = setInterval(function() {that.walkOneStep(that.speed * refresh_rate / 1000)}, 
+							refresh_rate);
 						this.onClickAction('stop');
 					}
 				}
@@ -68,11 +67,26 @@
 					this.keyTimer = 0;
 				}
 				this.onClickAction('walk');
+			}			
+		}
+		class Mouse extends Animal {
+			constructor(height=0, width=0, speed=0){
+				super('mouse_right.png', height, width, (speed==0)?10:speed);
 			}
 		}
-		var mouse1 = new Mouse(0, 48);
+		class Cat extends Animal {
+			constructor(height=0, width=0, speed=0){
+				super('cat_right.png', height, width, (speed==0)?20:speed);
+			}
+		}
+		var mouse1 = new Mouse();
 		var mouse2 = new Mouse(0, 48, 15);
+		var cat1 = new Cat();
+		var cat2 = new Cat(0, 117, 30);
 	</script>
 </body>
+
+
+
 
 
