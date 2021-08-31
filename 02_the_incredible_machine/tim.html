@@ -4,7 +4,11 @@
 			speed = 10
 			left = 0
 			image = null
-			constructor(height=0, width=0) {
+			//1.define a member variable to change walk mode
+			walkMode = 'auto'   //'manual', 'auto'
+			refresh_rate = 100;  //milliseconds
+			keyTimer = 0;
+			constructor(height=0, width=0, speed=0) {
 				//1.create an image, and append it to the 'body'
 				this.image = document.createElement('img');
 				this.image.src = 'mouse_right.png';
@@ -14,34 +18,61 @@
 				if (width > 0) {
 					this.image.width = width;
 				}
+				if (speed > 0) {
+					this.speed = speed;
+				}
 				this.image.style.position = "relative";
-				document.getElementById('body').appendChild(this.image);
-				//2.initialize the click event handler to "move"
+				document.getElementById('body')
+					.appendChild(document.createElement('div'))
+					.appendChild(this.image);
+				//2.set click action: stop or walk
 				this.onClickAction('walk');
 			}
-			//1.define a member function to handle the click event
 			onClickAction(action='stop'){
 				var that = this;
-				//1.1.if want to stop on click then assign stop() to the event handler
+				//1.if want to stop on click then assign stop() to the event handler
 				if (action === 'stop') {
 					this.image.onclick = function(){that.stop();};
 				}
-				//1.2.if want to move on click then assign walk() to the event handler
+				//2.if want to move on click then assign walk() to the event handler
 				else {
 					this.image.onclick = function(){that.walk();};	
 				}
 			}
-			walk(){
+			//3.add a parameter to specify the distance to walk (in px)
+			walkOneStep(distance=0){
 				//1.increase the left position attribute/property of the object, by "speed"
-				this.left += this.speed
+				this.left += distance
 				//2.assign the position to the left attribute of the image
 				this.image.style.left = this.left + 'px'
 			}
+			//2.define a member function to determine 'auto' move or 'manual' move
+			walk(){
+				if (this.walkMode === 'auto') {	
+					//2.1.if 'auto' mode, initialize a timer to call walkOneStep()
+					var that = this;
+					if (this.keyTimer === 0) {
+						this.keyTimer = setInterval(function() {that.walkOneStep(that.speed * that.refresh_rate / 1000)}, 
+							this.refresh_rate);
+						this.onClickAction('stop');
+					}
+				}
+				else {
+					//2.2.else, just call walkOneStep() once.
+					this.walkOneStep(this.speed);					
+				}
+			}
 			stop(){
-				//TODO: ...
-				console.log("stop");
+				if (this.keyTimer > 0) {
+					clearTimeout(this.keyTimer);
+					this.keyTimer = 0;
+				}
+				this.onClickAction('walk');
 			}
 		}
 		var mouse1 = new Mouse(0, 48);
+		var mouse2 = new Mouse(0, 48, 15);
 	</script>
 </body>
+
+
